@@ -25,30 +25,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11 release
 
 SOURCES += \
-        ..\src\main.cpp \
-        ..\src\mainwnd.cpp \
+        ../src/main.cpp \
+        ../src/mainwnd.cpp \
     ../src/sqlopt.cpp \
     ../src/datacenter.cpp
 
 HEADERS += \
-        ..\src\mainwnd.h \
+        ../src/mainwnd.h \
     ../src/sqlopt.h \
     ../src/datacenter.h \
     ../src/qaappdef.h
 
 FORMS += \
-        ..\src\qmainwnd.ui
+        ../src/qmainwnd.ui
 
-UI_DIR += ..\tmp\
-
-
-MOC_DIR += ..\tmp\
+UI_DIR += ../tmp/
 
 
-DESTDIR += ..\bin\
+MOC_DIR += ../tmp/
 
 
-OBJECTS_DIR += ..\tmp\
+DESTDIR += ../bin/
+
+
+OBJECTS_DIR += ../tmp/
 
 # Default rules for deployment.
 qnx: target.path = tmp/$${TARGET}/bin
