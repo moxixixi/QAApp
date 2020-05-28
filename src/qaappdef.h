@@ -13,6 +13,7 @@ typedef struct tagQuestion
     question_type type;
     std::string question;
     std::string answer;
+    std::string correct_answer;
 }Question;
 
 #endif // QAAPPDEF_H

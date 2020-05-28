@@ -2,6 +2,8 @@
 #include <QMutex>
 #include <QMutexLocker>
 #include "sqlopt.h"
+#include <QTime>
+#include <QThread>
 
 DataCenter* DataCenter::m_instance = Q_NULLPTR;
 
@@ -37,7 +39,7 @@ void DataCenter::init()
 
 size_t DataCenter::getProblemCount()
 {
-    return 0;
+    return 10;
 }
 
 void DataCenter::getProblem(int index, Question& _question)
@@ -52,8 +54,23 @@ int DataCenter::getRandomIndex(int npreindex)
         m_hasAnswered.insert(npreindex);
     }
 
+    size_t nCount = getProblemCount();
+    if(m_hasAnswered.size() >= nCount) return -1;
 
-    return 0;
+    int index = -1;
+    while(nCount > 0)
+    {
+        QTime qtime = QTime::currentTime();
+        qsrand(qtime.msec() + qtime.second()*1000);
+        index = qrand() % nCount;
+        if(m_hasAnswered.count(index) == 0)
+        {
+            break;
+        }
+        QThread::sleep(1);
+    }
+
+    return index;
 }
 
 void DataCenter::clearAnswered()
